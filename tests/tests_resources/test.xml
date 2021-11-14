@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DepartmentDataBase>
+    <resource
+            NAME = "name1"
+            ANNOTATION = "annotation1"
+            TYPE = "type1"
+            AUTHOR = "author1"
+            TERMS_OF_USE = "terms_of_use1"
+            ADDRESS = "address1">
+    </resource>
+    <resource
+            NAME = "name2"
+            ANNOTATION = "annotation2"
+            TYPE = "type2"
+            AUTHOR = "author2"
+            TERMS_OF_USE = "terms_of_use2"
+            ADDRESS = "address2">
+    </resource>
+    <resource
+            NAME = "name3"
+            ANNOTATION = "annotation3"
+            TYPE = "type3"
+            AUTHOR = "author3"
+            TERMS_OF_USE = "terms_of_use3"
+            ADDRESS = "address3">
+    </resource>
+</DepartmentDataBase>

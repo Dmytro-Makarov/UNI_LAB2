@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DepartmentDataBase>
+    <resource
+            NAME = "Design Patterns - Elements of Reusable Object-Oriented Software"
+            ANNOTATION = "Explanation of common Design Patterns"
+            TYPE = "Reference Manual"
+            AUTHOR = "Erich Gamma, Richard Helm, Ralph Johnson, John M. Vlissides"
+            TERMS_OF_USE = "Free for personal use"
+            ADDRESS = "Programming/Design patterns">
+    </resource>
+    <resource
+            NAME = "C# in Depth"
+            ANNOTATION = "Entry to C# by lead StackOverflow contributor"
+            TYPE = "Programming Book"
+            AUTHOR = "Jon Skeet"
+            TERMS_OF_USE = "Free for personal use"
+            ADDRESS = "Programming/C#">
+    </resource>
+    <resource
+            NAME = "Accelerated C++"
+            ANNOTATION = "Practice-driven entry to C++"
+            TYPE = "Programming Book"
+            AUTHOR = "Andrew Koenig"
+            TERMS_OF_USE = "Free for personal use"
+            ADDRESS = "Programming/C++">
+    </resource>
+    <resource
+            NAME = "C++ Primer"
+            ANNOTATION = "In-depth C++ manual"
+            TYPE = "Reference Manual"
+            AUTHOR = "Stanley B. Lippman, Josee Lajoie, Barbara E. Moo"
+            TERMS_OF_USE = "Open for citation"
+            ADDRESS = "Programming/C++">
+    </resource>
+    <resource
+            NAME = "Why txt is better than XML?"
+            ANNOTATION = "Advantages of txt over XML"
+            TYPE = "Research Paper"
+            AUTHOR = "Deez N. Nuts"
+            TERMS_OF_USE = "Open for citation"
+            ADDRESS = "System">
+    </resource>
+    <resource
+            NAME = "Python Crash Course"
+            ANNOTATION = "Introduction to programming using Python"
+            TYPE = "Programming Book"
+            AUTHOR = "Eric Matthes"
+            TERMS_OF_USE = "Free for personal use"
+            ADDRESS = "Programming/Python">
+    </resource>
+    <resource
+            NAME = "Python Object-Oriented Programming"
+            ANNOTATION = "Introduction to OOP using Python"
+            TYPE = "Programming Book"
+            AUTHOR = "Steven F. Lott, Dusty Phillips"
+            TERMS_OF_USE = "Free for personal use"
+            ADDRESS = "Programming/Python">
+    </resource>
+    <resource
+            NAME = "Learn Python 3 the Hard Way"
+            ANNOTATION = "Introduction to Python 3 using Python"
+            TYPE = "Programming Book"
+            AUTHOR = "Zed A. Shaw"
+            TERMS_OF_USE = "Free for personal use"
+            ADDRESS = "Programming/Python">
+    </resource>
+    <resource
+            NAME = "Introduction to Java Programming and Data Structures"
+            ANNOTATION = "Peepeepoopoo"
+            TYPE = "Modular Book/Reference Manual"
+            AUTHOR = "Y. Daniel Liang"
+            TERMS_OF_USE = "Free for personal use"
+            ADDRESS = "Programming/Java">
+    </resource>
+    <resource
+            NAME = "Effective Java"
+            ANNOTATION = "Tips on improving your Java code"
+            TYPE = "Programming Tips Book"
+            AUTHOR = "Joshua Bloch"
+            TERMS_OF_USE = "Free for personal use"
+            ADDRESS = "Programming/Java">
+    </resource>
+    <resource
+            NAME = "The Java language specification"
+            ANNOTATION = "A specification manual for Java"
+            TYPE = "Language Specification"
+            AUTHOR = "James Gosling, Bill Joy, Guy Steele, Gilad Bracha"
+            TERMS_OF_USE = "Open for citation"
+            ADDRESS = "Programming/Java">
+    </resource>
+    <resource
+            NAME = "Kotlin in Action"
+            ANNOTATION = "Practice-based intro to Kotlin"
+            TYPE = "Programming Book"
+            AUTHOR = "Dmitry Jemerov, Svetlana Isakova"
+            TERMS_OF_USE = "Free for personal use"
+            ADDRESS = "Programming/Kotlin">
+    </resource>
+    <resource
+            NAME = "Foundation of Game Engine Development Vol.1 - Mathematics"
+            ANNOTATION = "About mathematics used in Games"
+            TYPE = "Math Book"
+            AUTHOR = "Eric Lengyel"
+            TERMS_OF_USE = "Free for personal use"
+            ADDRESS = "Game Engine/Mathematics">
+    </resource>
+    <resource
+            NAME = "Foundation of Game Engine Development Vol.2 - Rendering"
+            ANNOTATION = "About rendering tricks used in Game Engine rendering"
+            TYPE = "Graphics Book"
+            AUTHOR = "Eric Lengyel"
+            TERMS_OF_USE = "Free for personal use"
+            ADDRESS = "Game Engine/Graphics">
+    </resource>
+</DepartmentDataBase>
