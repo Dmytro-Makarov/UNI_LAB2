@@ -16,7 +16,7 @@ import java.util.Collections;
 
 public class XPathAnalyzer implements Strategy {
     @Override
-    public ArrayList<Resource> search(String filePath, Resource searchAttributes) {
+    public ArrayList<Resource> search(File file, Resource searchAttributes) {
         ArrayList<Resource> searchResult = new ArrayList<>();
 
         ArrayList<String> searchArr = searchAttributes.getAttributes();
@@ -24,7 +24,7 @@ public class XPathAnalyzer implements Strategy {
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = builderFactory.newDocumentBuilder();
-            Document xmlDocument = builder.parse(new File(filePath));
+            Document xmlDocument = builder.parse(file);
             XPath xPath = XPathFactory.newInstance().newXPath();
 
             String expression = "/DepartmentDataBase/resource/@*";
@@ -60,7 +60,7 @@ public class XPathAnalyzer implements Strategy {
         return searchResult;
     }
 
-    public ArrayList<ArrayList<String>> getAttributes(String filePath) {
+    public ArrayList<ArrayList<String>> getAttributes(File file) {
         ArrayList<String> nameArr = new ArrayList<>();
         ArrayList<String> annotationArr = new ArrayList<>();
         ArrayList<String> typeArr = new ArrayList<>();
@@ -71,7 +71,7 @@ public class XPathAnalyzer implements Strategy {
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = builderFactory.newDocumentBuilder();
-            Document xmlDocument = builder.parse(new File(filePath));
+            Document xmlDocument = builder.parse(file);
             XPath xPath = XPathFactory.newInstance().newXPath();
             NodeList nl = (NodeList) xPath.evaluate("/DepartmentDataBase/resource/@*",xmlDocument, XPathConstants.NODESET);
             int length = nl.getLength();

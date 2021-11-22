@@ -1,9 +1,10 @@
 package uni.makarov.lab2;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public interface Strategy {
-    ArrayList<Resource> search(String filePath, Resource searchAttributes);
+    ArrayList<Resource> search(File file, Resource searchAttributes);
 
     default void filterResults(ArrayList<Resource> searchResults, ArrayList<String> searchArr){
         int searchResultsSize = searchResults.size();

@@ -4,7 +4,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.ArrayList;
 
 //Hierarchy
@@ -39,7 +42,9 @@ public class AppView {
     private final AppController controller;
     private final AppModel model;
 
-    private SplitPane root;
+    private VBox root;
+
+    private MenuItem openFile;
 
     private CheckBox nameChkB;
     private ComboBox nameComB;
@@ -75,11 +80,19 @@ public class AppView {
 
         initView();
         initActions();
-        setComboBox();
     }
 
     private void initView(){
-        root = new SplitPane();
+        root = new VBox();
+
+        MenuBar menu = new MenuBar();
+        Menu fileMenu = new Menu("File");
+        openFile = new MenuItem("Open...");
+
+        menu.getMenus().add(fileMenu);
+        fileMenu.getItems().add(openFile);
+
+        SplitPane splitPane = new SplitPane();
 
         AnchorPane leftPane = new AnchorPane();
 
@@ -171,12 +184,36 @@ public class AppView {
         rightPane.getChildren().addAll(foundResultsLabel, searchResultTextArea);
         VBox.setVgrow(searchResultTextArea, Priority.ALWAYS);
 
-        root.getItems().addAll(leftPane, rightPane);
+        splitPane.getItems().addAll(leftPane, rightPane);
         SplitPane.setResizableWithParent(leftPane, false);
         SplitPane.setResizableWithParent(rightPane, false);
+
+        leftPane.maxWidthProperty().bind(rightPane.widthProperty());
+
+        root.getChildren().addAll(menu, splitPane);
+        VBox.setVgrow(splitPane, Priority.ALWAYS);
     }
 
     private void initActions(){
+        openFile.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open XML File");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML", "*.xml"));
+
+            File file = fileChooser.showOpenDialog(new Stage());
+            if(file == null || !file.exists()) {
+                foundResultsLabel.setText("FILE NOT FOUND!");
+                return;
+            }
+            controller.setXMLFile(file);
+
+            try {
+                setComboBox();
+            } catch (IllegalArgumentException e){
+                e.printStackTrace();
+            }
+        });
+
         nameChkB.setOnAction(event -> nameComB.setDisable(!nameChkB.isSelected()));
 
         annotationChkB.setOnAction(event -> annotationComB.setDisable(!annotationChkB.isSelected()));
@@ -196,8 +233,12 @@ public class AppView {
                 foundResultsLabel.setText("API NOT PICKED!");
                 return;
             }
-            ArrayList<Resource> searchResultArr = controller.searchRequest(getSearchAttributes());
-            showResults(searchResultArr);
+            ArrayList<String> searchAttributes = getSearchAttributes();
+            if (searchAttributes != null) {
+                ArrayList<Resource> searchResultArr = controller.searchRequest(searchAttributes);
+                if(searchResultArr != null)
+                showResults(searchResultArr);
+            }
         });
 
         clearBtn.setOnAction(event -> {
@@ -210,42 +251,47 @@ public class AppView {
 
     ArrayList<String> getSearchAttributes(){
         ArrayList<String> searchAttributes = new ArrayList<>();
-        if (!nameComB.isDisabled()){
-            searchAttributes.add(nameComB.getValue().toString());
-        } else {
-            searchAttributes.add("");
-        }
 
-        if (!annotationComB.isDisabled()){
-            searchAttributes.add(annotationComB.getValue().toString());
-        } else {
-            searchAttributes.add("");
-        }
+        try {
+            if (!nameComB.isDisabled()) {
+                searchAttributes.add(nameComB.getValue().toString());
+            } else {
+                searchAttributes.add("");
+            }
 
-        if (!typeComB.isDisabled()){
-            searchAttributes.add(typeComB.getValue().toString());
-        } else {
-            searchAttributes.add("");
-        }
+            if (!annotationComB.isDisabled()) {
+                searchAttributes.add(annotationComB.getValue().toString());
+            } else {
+                searchAttributes.add("");
+            }
 
-        if (!authorComB.isDisabled()){
-            searchAttributes.add(authorComB.getValue().toString());
-        } else {
-            searchAttributes.add("");
-        }
+            if (!typeComB.isDisabled()) {
+                searchAttributes.add(typeComB.getValue().toString());
+            } else {
+                searchAttributes.add("");
+            }
 
-        if (!touComB.isDisabled()){
-            searchAttributes.add(touComB.getValue().toString());
-        } else {
-            searchAttributes.add("");
-        }
+            if (!authorComB.isDisabled()) {
+                searchAttributes.add(authorComB.getValue().toString());
+            } else {
+                searchAttributes.add("");
+            }
 
-        if (!addressComB.isDisabled()){
-            searchAttributes.add(addressComB.getValue().toString());
-        } else {
-            searchAttributes.add("");
-        }
+            if (!touComB.isDisabled()) {
+                searchAttributes.add(touComB.getValue().toString());
+            } else {
+                searchAttributes.add("");
+            }
 
+            if (!addressComB.isDisabled()) {
+                searchAttributes.add(addressComB.getValue().toString());
+            } else {
+                searchAttributes.add("");
+            }
+        } catch (NullPointerException e){
+            foundResultsLabel.setText("One of the attributes is not chosen!");
+            return null;
+        }
         return searchAttributes;
     }
 

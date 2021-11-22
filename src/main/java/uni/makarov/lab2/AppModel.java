@@ -15,25 +15,40 @@ public class AppModel {
 
     ArrayList<ArrayList<String>> xmlAttributes;
 
+    ArrayList<Resource> tempSearchResults;
+
     XMLContext toolContext;
 
-    private final String pathToXML = "src/main/resources/uni/makarov/lab2/DepartmentDB.xml";
-    private final String pathToXSLT = "src/main/resources/uni/makarov/lab2/DepartmentDB.xsl";
+    private File xmlFile;
+    private final File xsltFile = new File("src/main/resources/uni/makarov/lab2/DepartmentDB.xsl");
 
     AppModel() {
         toolContext = new XMLContext();
     }
 
-    void convertToHTML() {
-        Source xml = new StreamSource(new File(pathToXML));
-        Source xslt = new StreamSource(pathToXSLT);
+    void setXMLFile(File xmlFile){
+        this.xmlFile = xmlFile;
+    }
 
+    void convertToHTML() {
+        XMLBuilder xmlBuilder = new XMLBuilder();
+
+        Source xml = null;
+        if(tempSearchResults != null) {
+            xml = new StreamSource(new File(xmlBuilder.createNewXML(tempSearchResults)));
+        } else if(xmlFile != null){
+            xml = new StreamSource(xmlFile);
+        }
+
+        Source xslt = new StreamSource(xsltFile);
+
+        if(xml != null)
         new XMLToHTMLConverter(xml, xslt);
     }
 
     ArrayList<ArrayList<String>> analyze() {
         XPathAnalyzer analyzer = new XPathAnalyzer();
-        xmlAttributes = analyzer.getAttributes(pathToXML);
+        xmlAttributes = analyzer.getAttributes(xmlFile);
         return xmlAttributes;
     }
 
@@ -51,7 +66,12 @@ public class AppModel {
         }
 
         public ArrayList<Resource> search(Resource searchAttributes) {
-            return api.search(pathToXML, searchAttributes);
+            if(xmlFile != null) {
+                tempSearchResults = api.search(xmlFile, searchAttributes);
+                return tempSearchResults;
+            } else {
+                return null;
+            }
         }
     }
 }

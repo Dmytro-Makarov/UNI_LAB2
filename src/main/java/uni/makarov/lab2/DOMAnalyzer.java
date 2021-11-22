@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class DOMAnalyzer implements Strategy{
     @Override
-    public ArrayList<Resource> search(String filePath, Resource searchAttributes) {
+    public ArrayList<Resource> search(File file, Resource searchAttributes) {
 
         ArrayList<Resource> searchResult = new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class DOMAnalyzer implements Strategy{
 
             DocumentBuilder db = dbf.newDocumentBuilder();
 
-            Document doc = db.parse(new File(filePath));
+            Document doc = db.parse(file);
             doc.getDocumentElement().normalize();
 
             NodeList list = doc.getElementsByTagName("resource");

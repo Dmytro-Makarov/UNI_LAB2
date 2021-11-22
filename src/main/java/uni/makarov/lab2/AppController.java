@@ -1,5 +1,6 @@
 package uni.makarov.lab2;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class AppController {
@@ -24,6 +25,10 @@ public class AppController {
 
     ArrayList<Resource> searchRequest(ArrayList<String> attributesArr){
         return model.toolContext.search(new Resource(attributesArr));
+    }
+
+    void setXMLFile(File xmlFile){
+        model.setXMLFile(xmlFile);
     }
 
     void convertRequest(){

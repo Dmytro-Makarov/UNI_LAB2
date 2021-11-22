@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class SAXAnalyzer implements Strategy{
     @Override
-    public ArrayList<Resource> search(String filePath, Resource searchAttributes) {
+    public ArrayList<Resource> search(File file, Resource searchAttributes) {
         ArrayList<Resource> searchResult = new ArrayList<>();
 
         try {
@@ -26,7 +26,7 @@ public class SAXAnalyzer implements Strategy{
 
             handler.setHandlerArr(searchResult);
 
-            parser.parse(new File(filePath), handler);
+            parser.parse(file, handler);
 
             searchResult = handler.getHandlerArr();
 
