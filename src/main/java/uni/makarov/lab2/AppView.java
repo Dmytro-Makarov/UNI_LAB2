@@ -312,6 +312,7 @@ public class AppView {
     }
 
     private void setComboBox(){
+        purgeComboBox();
         ArrayList<ArrayList<String>> xmlAttributes = controller.getAttributes();
         nameComB.getItems().addAll(xmlAttributes.get(0));
         annotationComB.getItems().addAll(xmlAttributes.get(1));
@@ -319,6 +320,25 @@ public class AppView {
         authorComB.getItems().addAll(xmlAttributes.get(3));
         touComB.getItems().addAll(xmlAttributes.get(4));
         addressComB.getItems().addAll(xmlAttributes.get(5));
+    }
+
+    private void purgeComboBox(){
+        ArrayList<ComboBox> comboBoxes = new ArrayList<>();
+        comboBoxes.add(nameComB);
+        comboBoxes.add(annotationComB);
+        comboBoxes.add(typeComB);
+        comboBoxes.add(authorComB);
+        comboBoxes.add(touComB);
+        comboBoxes.add(addressComB);
+        for (ComboBox comboBox : comboBoxes) {
+            while (true) {
+                try {
+                    comboBox.getItems().remove(0);
+                } catch (IndexOutOfBoundsException e){
+                    break;
+                }
+            }
+        }
     }
 
     public Parent asParent(){

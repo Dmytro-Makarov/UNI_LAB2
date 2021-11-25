@@ -11,7 +11,7 @@ public class MainApplication extends Application {
         AppController appController = new AppController(appModel);
         AppView appView = new AppView(appController, appModel);
 
-        Scene scene = new Scene(appView.asParent(), 640, 480);
+        Scene scene = new Scene(appView.asParent(), 640, 500);
         stage.setTitle("Laboratory No.2");
         stage.setScene(scene);
         stage.show();
